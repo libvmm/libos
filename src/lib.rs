@@ -4,12 +4,12 @@
 extern crate x86_64;
 extern crate alloc;
 
-mod io;
-mod heap;
-mod vm;
-mod pic;
+pub mod io;
+pub mod heap;
+pub mod vm;
+pub mod pic;
 #[macro_use]
-mod output;
-mod kernel;
-mod page_alloc;
-mod interrupt_controller;
+pub mod output;
+pub mod kernel;
+pub mod page_alloc;
+pub mod interrupt_controller;
