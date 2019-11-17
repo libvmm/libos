@@ -1,4 +1,5 @@
 #![no_std]
+#![feature(asm)]
 #![feature(alloc_error_handler)]
 
 extern crate x86_64;
@@ -8,6 +9,7 @@ pub mod io;
 pub mod heap;
 pub mod vm;
 pub mod pic;
+pub mod msr;
 #[macro_use]
 pub mod output;
 pub mod kernel;
