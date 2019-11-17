@@ -11,6 +11,7 @@ pub mod vm;
 pub mod pic;
 pub mod msr;
 pub mod apic;
+pub mod cpu;
 #[macro_use]
 pub mod output;
 pub mod kernel;
