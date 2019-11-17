@@ -10,6 +10,7 @@ pub mod heap;
 pub mod vm;
 pub mod pic;
 pub mod msr;
+pub mod apic;
 #[macro_use]
 pub mod output;
 pub mod kernel;
