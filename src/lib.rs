@@ -1,5 +1,6 @@
 #![no_std]
 #![feature(asm)]
+#![feature(abi_x86_interrupt)]
 #![feature(alloc_error_handler)]
 
 extern crate x86_64;
@@ -12,6 +13,7 @@ pub mod pic;
 pub mod msr;
 pub mod apic;
 pub mod cpu;
+pub mod idt;
 #[macro_use]
 pub mod output;
 pub mod kernel;
