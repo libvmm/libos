@@ -14,7 +14,7 @@ lazy_static! {
         idt[35].set_handler_fn(ipi_handler);
         idt[39].set_handler_fn(spurious_handler);
 
-        idt.divide_by_zero.set_handler_fn(generic_handler);
+        idt.divide_error.set_handler_fn(generic_handler);
         idt.debug.set_handler_fn(generic_handler);
         idt.non_maskable_interrupt.set_handler_fn(generic_handler);
         idt.breakpoint.set_handler_fn(generic_handler);
@@ -23,7 +23,7 @@ lazy_static! {
         idt.invalid_opcode.set_handler_fn(generic_handler);
         idt.device_not_available.set_handler_fn(generic_handler);
         idt.x87_floating_point.set_handler_fn(generic_handler);
-        idt.machine_check.set_handler_fn(generic_handler);
+        idt.machine_check.set_handler_fn(machine_check_handler);
         idt.virtualization.set_handler_fn(generic_handler);
         idt.double_fault.set_handler_fn(double_fault_handler);
 
@@ -51,7 +51,7 @@ extern "x86-interrupt" fn pagefault_handler(
 
 extern "x86-interrupt" fn double_fault_handler(
     _stack_frame: &mut InterruptStackFrame,
-    error_code: u64)
+    error_code: u64) -> !
 {
     println!("double fault -> error: {:?}", error_code);
     println!("fault_address {:?}", x86_64::registers::control::Cr2::read());
@@ -85,6 +85,13 @@ extern "x86-interrupt" fn generic_handler(
     _stack_frame: &mut InterruptStackFrame)
 {
     println!("Generic handler!");
+    loop {}
+}
+
+extern "x86-interrupt" fn machine_check_handler(
+    _stack_frame: &mut InterruptStackFrame) -> !
+{
+    println!("Machine check handler!");
     loop {}
 }
 
