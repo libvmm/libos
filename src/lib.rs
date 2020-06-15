@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(asm)]
+#![feature(llvm_asm)]
 #![feature(abi_x86_interrupt)]
 #![feature(alloc_error_handler)]
 
